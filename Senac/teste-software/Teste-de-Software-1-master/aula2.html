@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Depuração de Software</title>
+    <style>
+        /* CSS básico para estilizar a página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Depuração de Software com console.log()</h1>
+<button id="testButton">Clique aqui para testar</button>
+<div id="output"></div>
+
+<script>
+    // Função que será acionada quando o botão for clicado
+    function testFunction() {
+        console.log('Função testFunction foi chamada');
+        
+        let value = 42;
+        console.log('O valor inicial é:', value);
+
+  
+        let errorValue = value + '8'; // HERE
+        console.log('O valor após adicionar "8" é:', errorValue);
+
+        
+        document.getElementById('output').innerText = 'O resultado final é: ' + errorValue;
+        console.log('Função testFunction terminou de executar');
+    }
+
+    // Adicionando um ouvinte de evento para o botão
+    document.getElementById('testButton').addEventListener('click', testFunction);
+    console.log('Botão disponível');
+</script>
+
+</body>
+</html>

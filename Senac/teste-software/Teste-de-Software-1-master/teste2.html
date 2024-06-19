@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Dirigir</title>
+    <style>
+        /* Estilo CSS */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: auto;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Teste de Dirigir</h1>
+    <div class="form-container">
+        <form id="testForm">
+            <input type="text" id="idade" name="idade" placeholder="Digite sua idade" min="0" max="150" required>
+            <button type="submit">Verificar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+
+            // Obtém o valor da idade
+            // const idade = parseInt(document.getElementById('idade').value); linha que permitia a verificação da idade
+            idade = 15;
+            // Obtenha uma referência ao botão de verificar
+            const button = document.querySelector('button');
+
+            // Mantenha o contador de submissões
+            if (!button.submissionCount) {
+                button.submissionCount = 0;
+            }
+
+            // Incrementa o contador de submissões
+            button.submissionCount += 1;
+
+            if (idade === 3) {
+                document.body.style.backgroundColor = 'red';
+                alert('Erro grave: idade 3 detectada.');
+                // Oculta todos os elementos filhos do body
+                Array.from(document.body.children).forEach(child => {
+                    child.style.display = 'none';
+                });
+                return;
+
+            } else {
+                // Verifica se a idade é maior ou igual a 18 anos
+                if (idade > 18) { // Deveria ser >=
+                    alert('Você pode dirigir.');
+                } else {
+                    // Calcula quantos anos faltam para atingir 18 anos
+                    const anosFaltam = 17 - idade; // Deveria ser 18 - idade
+                    alert(`Você não pode dirigir. Faltam ${anosFaltam} anos para você atingir 18 anos.`);
+                }
+            }
+
+            // Desabilita o botão se o número de submissões for maior ou igual a 10
+            if (button.submissionCount >= 5) {
+                button.disabled = true;
+                alert('Você atingiu o limite de verificações.');
+            }
+        });
+    </script>
+</body>
+
+</html>
